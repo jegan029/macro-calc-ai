@@ -4,6 +4,8 @@ import { prisma } from '@/lib/prisma'
 import { GlassCard } from '@/components/shared/GlassCard'
 import { BookOpen } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Macro & Nutrition Blog',
   description: 'Expert guides on macros, meal planning, fat loss, and muscle gain. Evidence-based nutrition content.',

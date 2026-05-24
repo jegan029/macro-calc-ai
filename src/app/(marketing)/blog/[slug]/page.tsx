@@ -361,15 +361,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const dbSlugs = await prisma.blogPost.findMany({
-    where: { published: true },
-    select: { slug: true },
-  }).catch(() => [])
-
-  const seedSlugs = Object.keys(SEED_CONTENT).map((slug) => ({ slug }))
-  const all = [...dbSlugs, ...seedSlugs]
-  const unique = Array.from(new Map(all.map((p) => [p.slug, p])).values())
-  return unique
+  return Object.keys(SEED_CONTENT).map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
