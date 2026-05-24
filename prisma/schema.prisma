@@ -1,0 +1,206 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================================
+// Enums
+// ============================================================
+
+enum Role {
+  USER
+  PREMIUM
+  ADMIN
+}
+
+enum SubscriptionStatus {
+  FREE
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  TRIALING
+}
+
+enum Goal {
+  FAT_LOSS
+  MAINTENANCE
+  MUSCLE_GAIN
+}
+
+enum ActivityLevel {
+  SEDENTARY
+  LIGHT
+  MODERATE
+  HIGH
+  ATHLETE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum Unit {
+  KG
+  LBS
+}
+
+// ============================================================
+// Models
+// ============================================================
+
+model User {
+  id             String    @id @default(cuid())
+  clerkId        String    @unique
+  email          String    @unique
+  name           String?
+  avatarUrl      String?
+  role           Role      @default(USER)
+  referralCode   String    @unique @default(cuid())
+  referredById   String?
+  referredBy     User?     @relation("Referrals", fields: [referredById], references: [id])
+  referrals      User[]    @relation("Referrals")
+  streak         Int       @default(0)
+  lastActiveDate DateTime?
+  totalPoints    Int       @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  subscription  Subscription?
+  macroProfiles MacroProfile[]
+  mealPlans     MealPlan[]
+  progressLogs  ProgressLog[]
+  achievements  UserAchievement[]
+  aiGenerations AiGeneration[]
+
+  @@map("users")
+}
+
+model Subscription {
+  id                     String             @id @default(cuid())
+  userId                 String             @unique
+  user                   User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stripeCustomerId       String             @unique
+  stripeSubscriptionId   String?            @unique
+  stripePriceId          String?
+  stripeCurrentPeriodEnd DateTime?
+  status                 SubscriptionStatus @default(FREE)
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
+
+  @@map("subscriptions")
+}
+
+model MacroProfile {
+  id            String        @id @default(cuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name          String?
+  weightKg      Float
+  goal          Goal
+  activityLevel ActivityLevel
+  gender        Gender
+  age           Int
+  calories      Float
+  protein       Float
+  fat           Float
+  carbs         Float
+  fiber         Float
+  unit          Unit          @default(KG)
+  isDefault     Boolean       @default(false)
+  shareToken    String        @unique @default(cuid())
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  mealPlans MealPlan[]
+
+  @@map("macro_profiles")
+}
+
+model MealPlan {
+  id             String        @id @default(cuid())
+  userId         String
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  macroProfileId String?
+  macroProfile   MacroProfile? @relation(fields: [macroProfileId], references: [id])
+  name           String
+  cuisine        String?
+  restrictions   String[]      @default([])
+  planData       Json
+  groceryList    Json?
+  isFavorite     Boolean       @default(false)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@map("meal_plans")
+}
+
+model ProgressLog {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weightKg Float
+  notes    String?
+  loggedAt DateTime @default(now())
+
+  @@index([userId, loggedAt])
+  @@map("progress_logs")
+}
+
+model Achievement {
+  id          String            @id @default(cuid())
+  key         String            @unique
+  title       String
+  description String
+  iconUrl     String?
+  points      Int               @default(10)
+  users       UserAchievement[]
+
+  @@map("achievements")
+}
+
+model UserAchievement {
+  id            String      @id @default(cuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievementId String
+  achievement   Achievement @relation(fields: [achievementId], references: [id])
+  earnedAt      DateTime    @default(now())
+
+  @@unique([userId, achievementId])
+  @@map("user_achievements")
+}
+
+model AiGeneration {
+  id               String   @id @default(cuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type             String
+  promptTokens     Int
+  completionTokens Int
+  model            String
+  createdAt        DateTime @default(now())
+
+  @@map("ai_generations")
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  excerpt     String
+  content     String
+  metaTitle   String?
+  metaDesc    String?
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("blog_posts")
+}
