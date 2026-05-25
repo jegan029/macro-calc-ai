@@ -1,32 +1,16 @@
-import type { MacroInput, MacroResult, Goal, ActivityLevel } from '@/types'
-import { lbsToKg } from './utils'
-
-const GOAL_MODIFIERS: Record<Goal, number> = {
-  FAT_LOSS: 0.9,
-  MAINTENANCE: 1.0,
-  MUSCLE_GAIN: 1.1,
-}
-
-const ACTIVITY_MULTIPLIERS: Record<ActivityLevel, number> = {
-  SEDENTARY: 1.0,
-  LIGHT: 1.1,
-  MODERATE: 1.2,
-  HIGH: 1.35,
-  ATHLETE: 1.5,
-}
+import type { MacroInput, MacroResult } from '@/types'
+import { lbsToKg, kgToLbs } from './utils'
 
 export function calculateMacros(input: MacroInput): MacroResult {
+  const weightLbs = input.unit === 'KG' ? kgToLbs(input.weight) : input.weight
   const weightKg = input.unit === 'LBS' ? lbsToKg(input.weight) : input.weight
 
-  const goalMod = GOAL_MODIFIERS[input.goal]
-  const activityMult = ACTIVITY_MULTIPLIERS[input.activityLevel]
-
-  const baseCalories = weightKg * 9
-  const calories = Math.round(baseCalories * goalMod * activityMult)
-  const protein = Math.round(weightKg * 0.8)
-  const fat = Math.round(weightKg * 0.3)
+  // Professional formula — all based on body weight in lbs
+  const calories = Math.round(weightLbs * 9)
+  const protein = Math.round(weightLbs * 0.8)
+  const fat = Math.round(weightLbs * 0.3)
   const fiber = Math.round((calories / 1000) * 14)
-  const carbs = Math.round(((calories - weightKg) * 6) / 4)
+  const carbs = Math.round(((calories - weightLbs) * 6) / 4)
 
   return { calories, protein, fat, carbs, fiber, weightKg }
 }
