@@ -10,7 +10,7 @@ export function calculateMacros(input: MacroInput): MacroResult {
   const protein = Math.round(weightLbs * 0.8)
   const fat = Math.round(weightLbs * 0.3)
   const fiber = Math.round((calories / 1000) * 14)
-  const carbs = Math.round(((calories - weightLbs) * 6) / 4)
+  const carbs = Math.round((calories - weightLbs * 6) / 4)
 
   return { calories, protein, fat, carbs, fiber, weightKg }
 }
