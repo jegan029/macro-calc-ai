@@ -6,6 +6,7 @@ import { captureEvent } from '@/lib/posthog'
 
 const schema = z.object({
   weight: z.number().min(20).max(500),
+  height: z.number().min(30).max(300),
   unit: z.enum(['KG', 'LBS']),
   goal: z.enum(['FAT_LOSS', 'MAINTENANCE', 'MUSCLE_GAIN']),
   activityLevel: z.enum(['SEDENTARY', 'LIGHT', 'MODERATE', 'HIGH', 'ATHLETE']),

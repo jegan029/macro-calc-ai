@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev          # Start dev server (Turbopack)
+npm run dev          # Start dev server
 npm run build        # Production build — must pass with zero TS errors
 npm run start        # Start production server
 
@@ -40,12 +40,25 @@ The root `src/app/layout.tsx` wraps everything in `ClerkProvider` + `PostHogProv
 
 Middleware (`src/middleware.ts`) uses Clerk v7's `clerkMiddleware()`. Webhook routes (`/api/webhooks/*`) must remain in the public route matcher.
 
+### Macro Formula (`src/lib/calc.ts`)
+
+All calculations are based on **body weight in pounds** (kg inputs are converted first). The professional formula used throughout the app:
+
+```
+calories = weightLbs × 9
+protein  = weightLbs × 0.8  (grams)
+fat      = weightLbs × 0.3  (grams)
+fiber    = (calories / 1000) × 14  (grams)
+carbs    = (calories − weightLbs × 6) / 4  (grams)
+```
+
+`MacroResult` still carries `weightKg` for display and DB storage. There are no goal or activity multipliers applied to calories — the formula is purely weight-based.
+
 ### Calculator Flow
 
 1. User submits `MacroForm` → calls `POST /api/macro/calculate` (Zod-validated, rate-limited)
 2. Result stored in `useCalculatorStore` (Zustand, persisted to `sessionStorage`)
-3. `/results` page reads from the store; macros are computed client-side instantly — the email gate only *reveals* the UI, it doesn't block calculation
-4. Email capture → `POST /api/email/capture` → Resend audience add + welcome email
+3. `/results` page reads from the store and shows `MacroBreakdown` immediately — no email gate
 
 ### AI Meal Planner
 

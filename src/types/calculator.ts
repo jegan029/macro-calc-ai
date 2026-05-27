@@ -5,6 +5,7 @@ export type Gender = 'MALE' | 'FEMALE' | 'OTHER'
 
 export interface MacroInput {
   weight: number
+  height: number
   unit: Unit
   goal: Goal
   activityLevel: ActivityLevel
@@ -44,7 +45,7 @@ export const ACTIVITY_DESCRIPTIONS: Record<ActivityLevel, string> = {
 }
 
 export const GOAL_DESCRIPTIONS: Record<Goal, string> = {
-  FAT_LOSS: 'Lose body fat (-10% calories)',
+  FAT_LOSS: 'Lose body fat (−500 cal deficit)',
   MAINTENANCE: 'Maintain current weight',
-  MUSCLE_GAIN: 'Build muscle (+10% calories)',
+  MUSCLE_GAIN: 'Build muscle (+300 cal surplus)',
 }

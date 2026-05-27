@@ -19,6 +19,7 @@ import { Zap } from 'lucide-react'
 
 const schema = z.object({
   weight: z.number({ error: 'Weight is required' }).min(20).max(500),
+  height: z.number({ error: 'Height is required' }).min(30).max(300),
   unit: z.enum(['KG', 'LBS']),
   goal: z.enum(['FAT_LOSS', 'MAINTENANCE', 'MUSCLE_GAIN']),
   activityLevel: z.enum(['SEDENTARY', 'LIGHT', 'MODERATE', 'HIGH', 'ATHLETE']),
@@ -48,6 +49,7 @@ export function MacroForm() {
   const onSubmit = (data: FormValues) => {
     const result = calculateMacros({
       weight: data.weight,
+      height: data.height,
       unit: data.unit as Unit,
       goal: data.goal as Goal,
       activityLevel: data.activityLevel as ActivityLevel,
@@ -56,6 +58,7 @@ export function MacroForm() {
     })
     setInput({
       weight: data.weight,
+      height: data.height,
       unit: data.unit as Unit,
       goal: data.goal as Goal,
       activityLevel: data.activityLevel as ActivityLevel,
@@ -100,6 +103,26 @@ export function MacroForm() {
         )}
       </div>
 
+      {/* Height */}
+      <div className="space-y-3">
+        <Label className="text-base font-semibold">Height</Label>
+        <div className="relative">
+          <Input
+            type="number"
+            step="0.1"
+            placeholder={unit === 'KG' ? 'e.g. 170' : 'e.g. 67'}
+            className="bg-white/5 border-white/10 text-foreground placeholder:text-muted-foreground text-lg h-14 pr-16 focus:border-neon/50 focus:ring-neon/20"
+            {...register('height', { valueAsNumber: true })}
+          />
+          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">
+            {unit === 'KG' ? 'cm' : 'in'}
+          </span>
+        </div>
+        {errors.height && (
+          <p className="text-sm text-destructive">{errors.height.message}</p>
+        )}
+      </div>
+
       {/* Goal */}
       <div className="space-y-3">
         <Label className="text-base font-semibold">Your Goal</Label>
@@ -120,10 +143,10 @@ export function MacroForm() {
         </div>
       </div>
 
-      {/* Optional fields */}
+      {/* Gender + Age */}
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label className="text-sm text-muted-foreground">Gender (optional)</Label>
+          <Label className="text-sm text-muted-foreground">Gender</Label>
           <Select onValueChange={(v) => setValue('gender', v as Gender)}>
             <SelectTrigger className="bg-white/5 border-white/10 focus:border-neon/50">
               <SelectValue placeholder="Select" />
@@ -136,7 +159,7 @@ export function MacroForm() {
           </Select>
         </div>
         <div className="space-y-2">
-          <Label className="text-sm text-muted-foreground">Age (optional)</Label>
+          <Label className="text-sm text-muted-foreground">Age</Label>
           <Input
             type="number"
             placeholder="e.g. 28"

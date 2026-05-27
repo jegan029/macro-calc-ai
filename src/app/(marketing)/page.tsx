@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { HeroSection } from '@/components/landing/HeroSection'
 import { SocialProof } from '@/components/landing/SocialProof'
 import { FeatureGrid } from '@/components/landing/FeatureGrid'
-import { TestimonialsCarousel } from '@/components/landing/TestimonialsCarousel'
 import { FaqAccordion } from '@/components/landing/FaqAccordion'
 import { NeonButton } from '@/components/shared/NeonButton'
 import { StructuredData } from '@/components/seo/StructuredData'
@@ -64,7 +63,6 @@ export default function LandingPage() {
       <HeroSection />
       <SocialProof />
       <FeatureGrid />
-      <TestimonialsCarousel />
 
       {/* CTA section */}
       <section className="py-24 px-4">
