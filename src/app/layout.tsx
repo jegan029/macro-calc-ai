@@ -56,7 +56,10 @@ export const metadata: Metadata = {
   },
 }
 
-const hasClerk = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+// In development, Clerk runs in permissive mode even without keys (shows a config banner).
+// In production (Vercel), skip ClerkProvider entirely when no key is set to avoid 500 errors.
+const hasClerk =
+  process.env.NODE_ENV !== 'production' || !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const content = (

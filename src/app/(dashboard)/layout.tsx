@@ -16,7 +16,7 @@ const NAV_ITEMS = [
 ]
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  if (!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) redirect('/')
+  if (process.env.NODE_ENV === 'production' && !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) redirect('/')
   const { userId } = await auth()
   if (!userId) redirect('/sign-in')
 

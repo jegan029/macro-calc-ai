@@ -15,6 +15,9 @@ const NAV_LINKS = [
   { href: '/blog', label: 'Blog' },
 ]
 
+const hasClerk =
+  process.env.NODE_ENV !== 'production' || !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+
 export function Header() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -48,22 +51,30 @@ export function Header() {
 
         {/* Auth */}
         <div className="hidden md:flex items-center gap-3">
-          <Show when="signed-out">
-            <SignInButton mode="modal">
-              <button className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Sign In
-              </button>
-            </SignInButton>
+          {hasClerk ? (
+            <>
+              <Show when="signed-out">
+                <SignInButton mode="modal">
+                  <button className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                    Sign In
+                  </button>
+                </SignInButton>
+                <NeonButton asChild size="sm">
+                  <Link href="/calculator">Get Started Free</Link>
+                </NeonButton>
+              </Show>
+              <Show when="signed-in">
+                <NeonButton asChild size="sm">
+                  <Link href="/dashboard">Dashboard</Link>
+                </NeonButton>
+                <UserButton />
+              </Show>
+            </>
+          ) : (
             <NeonButton asChild size="sm">
               <Link href="/calculator">Get Started Free</Link>
             </NeonButton>
-          </Show>
-          <Show when="signed-in">
-            <NeonButton asChild size="sm">
-              <Link href="/dashboard">Dashboard</Link>
-            </NeonButton>
-            <UserButton />
-          </Show>
+          )}
         </div>
 
         {/* Mobile menu button */}
@@ -99,20 +110,30 @@ export function Header() {
                 </Link>
               ))}
               <div className="pt-2 border-t border-border flex flex-col gap-2">
-                <Show when="signed-out">
+                {hasClerk ? (
+                  <>
+                    <Show when="signed-out">
+                      <NeonButton asChild size="md" className="w-full">
+                        <Link href="/calculator" onClick={() => setMobileOpen(false)}>
+                          Get Started Free
+                        </Link>
+                      </NeonButton>
+                    </Show>
+                    <Show when="signed-in">
+                      <NeonButton asChild size="md" className="w-full">
+                        <Link href="/dashboard" onClick={() => setMobileOpen(false)}>
+                          Dashboard
+                        </Link>
+                      </NeonButton>
+                    </Show>
+                  </>
+                ) : (
                   <NeonButton asChild size="md" className="w-full">
                     <Link href="/calculator" onClick={() => setMobileOpen(false)}>
                       Get Started Free
                     </Link>
                   </NeonButton>
-                </Show>
-                <Show when="signed-in">
-                  <NeonButton asChild size="md" className="w-full">
-                    <Link href="/dashboard" onClick={() => setMobileOpen(false)}>
-                      Dashboard
-                    </Link>
-                  </NeonButton>
-                </Show>
+                )}
               </div>
             </nav>
           </motion.div>
