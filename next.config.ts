@@ -1,5 +1,4 @@
 import type { NextConfig } from 'next'
-import path from 'path'
 
 const noClerkKey = !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 
@@ -23,16 +22,14 @@ const nextConfig: NextConfig = {
       },
     ]
   },
-  webpack(config) {
-    if (noClerkKey) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        '@clerk/nextjs': path.resolve('./src/lib/clerk-noop.tsx'),
-        '@clerk/nextjs/server': path.resolve('./src/lib/clerk-noop-server.ts'),
+  turbopack: noClerkKey
+    ? {
+        resolveAlias: {
+          '@clerk/nextjs': './src/lib/clerk-noop.tsx',
+          '@clerk/nextjs/server': './src/lib/clerk-noop-server.ts',
+        },
       }
-    }
-    return config
-  },
+    : {},
 }
 
 export default nextConfig
