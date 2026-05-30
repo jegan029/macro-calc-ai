@@ -36,27 +36,39 @@ export function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section className="py-24 px-4">
+    <section className="py-24 px-4 bg-white">
       <div className="container mx-auto max-w-3xl">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">
+          <p className="text-sm font-semibold text-neon uppercase tracking-widest mb-3">FAQ</p>
+          <h2 className="text-4xl font-bold mb-4 text-foreground">
             Frequently Asked{' '}
-            <span className="text-neon">Questions</span>
+            <span className="gradient-text">Questions</span>
           </h2>
+          <p className="text-muted-foreground">
+            Everything you need to know about MacroCalc AI.
+          </p>
         </div>
 
         <div className="space-y-3">
           {FAQS.map((faq, i) => (
-            <div key={i} className="glass rounded-xl px-6 border border-white/10">
+            <div
+              key={i}
+              className={cn(
+                'rounded-xl border transition-all duration-200',
+                open === i
+                  ? 'border-green-200 bg-green-50/50 shadow-sm'
+                  : 'border-border bg-white hover:border-green-200'
+              )}
+            >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 text-left py-5"
+                className="w-full flex items-center justify-between gap-4 text-left px-6 py-5"
               >
                 <span className={cn('font-medium transition-colors', open === i ? 'text-neon' : 'text-foreground')}>
                   {faq.q}
                 </span>
                 <ChevronDown
-                  className={cn('size-4 flex-shrink-0 text-muted-foreground transition-transform', open === i && 'rotate-180')}
+                  className={cn('size-4 flex-shrink-0 text-muted-foreground transition-transform duration-200', open === i && 'rotate-180')}
                 />
               </button>
               <AnimatePresence>
@@ -68,7 +80,7 @@ export function FaqAccordion() {
                     transition={{ duration: 0.2 }}
                     className="overflow-hidden"
                   >
-                    <p className="text-muted-foreground text-sm leading-relaxed pb-5">
+                    <p className="text-muted-foreground text-sm leading-relaxed px-6 pb-5">
                       {faq.a}
                     </p>
                   </motion.div>

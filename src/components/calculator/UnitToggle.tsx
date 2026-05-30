@@ -10,7 +10,7 @@ interface UnitToggleProps {
 
 export function UnitToggle({ value, onChange }: UnitToggleProps) {
   return (
-    <div className="flex rounded-lg border border-white/10 p-1 bg-white/5 w-fit">
+    <div className="flex rounded-lg border border-border p-1 bg-muted/40 w-fit">
       {(['KG', 'LBS'] as Unit[]).map((unit) => (
         <button
           key={unit}
@@ -19,7 +19,7 @@ export function UnitToggle({ value, onChange }: UnitToggleProps) {
           className={cn(
             'px-4 py-1.5 text-sm font-semibold rounded-md transition-all duration-200',
             value === unit
-              ? 'bg-neon text-black'
+              ? 'bg-neon text-white shadow-sm'
               : 'text-muted-foreground hover:text-foreground'
           )}
         >

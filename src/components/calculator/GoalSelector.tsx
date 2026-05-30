@@ -27,8 +27,8 @@ export function GoalSelector({ value, onChange }: GoalSelectorProps) {
           className={cn(
             'flex flex-col items-center gap-2 p-4 rounded-xl border transition-all duration-200 text-center',
             value === goal
-              ? 'border-neon bg-neon/10 text-neon shadow-[0_0_12px_rgba(0,255,135,0.15)]'
-              : 'border-white/10 bg-white/5 text-muted-foreground hover:border-white/20 hover:text-foreground'
+              ? 'border-neon bg-neon/10 text-neon shadow-[0_0_12px_var(--neon-glow)]'
+              : 'border-border bg-white text-muted-foreground hover:border-neon/40 hover:text-foreground'
           )}
         >
           <span className={value === goal ? 'text-neon' : 'text-muted-foreground'}>

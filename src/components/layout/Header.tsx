@@ -20,14 +20,14 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 glass border-b border-white/5">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-border shadow-sm">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="size-8 bg-neon rounded-lg flex items-center justify-center group-hover:glow transition-all">
-            <Zap className="size-4 text-black" />
+          <div className="size-8 bg-neon rounded-lg flex items-center justify-center group-hover:shadow-[0_0_16px_var(--neon-glow)] transition-all">
+            <Zap className="size-4 text-white" />
           </div>
-          <span className="font-bold text-lg tracking-tight">MacroCalc AI</span>
+          <span className="font-bold text-lg tracking-tight text-foreground">MacroCalc AI</span>
         </Link>
 
         {/* Desktop nav */}
@@ -68,7 +68,7 @@ export function Header() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden p-2 rounded-lg hover:bg-white/5"
+          className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -82,7 +82,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-white/5 bg-background/95 backdrop-blur-md"
+            className="md:hidden border-t border-border bg-white"
           >
             <nav className="container mx-auto px-4 py-4 flex flex-col gap-3">
               {NAV_LINKS.map((link) => (
@@ -98,7 +98,7 @@ export function Header() {
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-2 border-t border-white/5 flex flex-col gap-2">
+              <div className="pt-2 border-t border-border flex flex-col gap-2">
                 <Show when="signed-out">
                   <NeonButton asChild size="md" className="w-full">
                     <Link href="/calculator" onClick={() => setMobileOpen(false)}>

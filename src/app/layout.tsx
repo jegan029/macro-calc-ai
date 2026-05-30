@@ -67,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body className="min-h-full flex flex-col bg-background text-foreground antialiased">
           <PostHogProvider>
             {children}
-            <Toaster theme="dark" position="bottom-right" richColors />
+            <Toaster theme="light" position="bottom-right" richColors />
           </PostHogProvider>
         </body>
       </html>

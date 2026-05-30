@@ -91,7 +91,7 @@ export function MacroForm() {
             type="number"
             step="0.1"
             placeholder={unit === 'KG' ? 'e.g. 75' : 'e.g. 165'}
-            className="bg-white/5 border-white/10 text-foreground placeholder:text-muted-foreground text-lg h-14 pr-16 focus:border-neon/50 focus:ring-neon/20"
+            className="bg-white border-border text-foreground placeholder:text-muted-foreground text-lg h-14 pr-16 focus:border-neon/50 focus:ring-neon/20"
             {...register('weight', { valueAsNumber: true })}
           />
           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">
@@ -111,7 +111,7 @@ export function MacroForm() {
             type="number"
             step="0.1"
             placeholder={unit === 'KG' ? 'e.g. 170' : 'e.g. 67'}
-            className="bg-white/5 border-white/10 text-foreground placeholder:text-muted-foreground text-lg h-14 pr-16 focus:border-neon/50 focus:ring-neon/20"
+            className="bg-white border-border text-foreground placeholder:text-muted-foreground text-lg h-14 pr-16 focus:border-neon/50 focus:ring-neon/20"
             {...register('height', { valueAsNumber: true })}
           />
           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">
@@ -135,7 +135,7 @@ export function MacroForm() {
       {/* Activity Level */}
       <div className="space-y-3">
         <Label className="text-base font-semibold">Activity Level</Label>
-        <div className="glass rounded-xl p-5">
+        <div className="bg-white border border-border rounded-xl p-5">
           <ActivitySlider
             value={activityLevel}
             onChange={(a) => setValue('activityLevel', a)}
@@ -148,10 +148,10 @@ export function MacroForm() {
         <div className="space-y-2">
           <Label className="text-sm text-muted-foreground">Gender</Label>
           <Select onValueChange={(v) => setValue('gender', v as Gender)}>
-            <SelectTrigger className="bg-white/5 border-white/10 focus:border-neon/50">
+            <SelectTrigger className="bg-white border-border focus:border-neon/50">
               <SelectValue placeholder="Select" />
             </SelectTrigger>
-            <SelectContent className="bg-popover border-white/10">
+            <SelectContent className="bg-white border-border">
               <SelectItem value="MALE">Male</SelectItem>
               <SelectItem value="FEMALE">Female</SelectItem>
               <SelectItem value="OTHER">Other</SelectItem>
@@ -165,7 +165,7 @@ export function MacroForm() {
             placeholder="e.g. 28"
             min={13}
             max={100}
-            className="bg-white/5 border-white/10 focus:border-neon/50"
+            className="bg-white border-border focus:border-neon/50"
             {...register('age', { valueAsNumber: true })}
           />
         </div>

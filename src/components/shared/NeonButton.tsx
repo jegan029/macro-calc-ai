@@ -23,13 +23,13 @@ export const NeonButton = forwardRef<HTMLButtonElement, NeonButtonProps>(
           size === 'lg' && 'px-8 py-4 text-lg',
           size === 'xl' && 'px-10 py-5 text-xl',
           variant === 'solid' && [
-            'bg-neon text-black',
-            'hover:bg-neon/90 hover:shadow-[0_0_20px_rgba(0,255,135,0.4)]',
+            'bg-neon text-white',
+            'hover:bg-neon-dim hover:shadow-[0_4px_20px_var(--neon-glow)]',
             'active:scale-[0.98]',
           ],
           variant === 'outline' && [
             'border border-neon text-neon bg-transparent',
-            'hover:bg-neon/10 hover:shadow-[0_0_15px_rgba(0,255,135,0.2)]',
+            'hover:bg-neon/10 hover:shadow-[0_4px_15px_var(--neon-glow)]',
           ],
           variant === 'ghost' && [
             'text-neon bg-transparent',

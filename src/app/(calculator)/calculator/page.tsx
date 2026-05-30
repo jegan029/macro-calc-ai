@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { MacroForm } from '@/components/calculator/MacroForm'
 import { GlassCard } from '@/components/shared/GlassCard'
-import { Zap } from 'lucide-react'
+import { Zap, ArrowLeft } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Macro Calculator',
@@ -12,6 +13,17 @@ export default function CalculatorPage() {
   return (
     <div className="min-h-screen bg-background bg-grid bg-spotlight">
       <div className="container mx-auto px-4 py-16 max-w-2xl">
+        {/* Back to Home */}
+        <div className="mb-8">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="size-4" />
+            Back to Home
+          </Link>
+        </div>
+
         {/* Header */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-neon/10 border border-neon/20 rounded-full px-4 py-2 mb-6">

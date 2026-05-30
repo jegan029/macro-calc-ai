@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { HeroSection } from '@/components/landing/HeroSection'
-import { SocialProof } from '@/components/landing/SocialProof'
 import { FeatureGrid } from '@/components/landing/FeatureGrid'
 import { FaqAccordion } from '@/components/landing/FaqAccordion'
 import { NeonButton } from '@/components/shared/NeonButton'
@@ -61,7 +60,6 @@ export default function LandingPage() {
     <>
       <StructuredData data={[webAppSchema, faqSchema]} />
       <HeroSection />
-      <SocialProof />
       <FeatureGrid />
 
       {/* CTA section */}
@@ -74,7 +72,7 @@ export default function LandingPage() {
           <p className="text-muted-foreground text-lg mb-8">
             Calculate your macros in 10 seconds. No signup, no credit card, no BS.
           </p>
-          <NeonButton asChild size="xl" className="gap-3 shadow-[0_0_30px_rgba(0,255,135,0.25)]">
+          <NeonButton asChild size="xl" className="gap-3 shadow-[0_4px_24px_var(--neon-glow)]">
             <Link href="/calculator">
               <Zap className="size-5" />
               Calculate My Macros — Free
