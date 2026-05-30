@@ -1,4 +1,7 @@
 import type { NextConfig } from 'next'
+import path from 'path'
+
+const noClerkKey = !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 
 const nextConfig: NextConfig = {
   images: {
@@ -19,6 +22,16 @@ const nextConfig: NextConfig = {
         ],
       },
     ]
+  },
+  webpack(config) {
+    if (noClerkKey) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@clerk/nextjs': path.resolve('./src/lib/clerk-noop.tsx'),
+        '@clerk/nextjs/server': path.resolve('./src/lib/clerk-noop-server.ts'),
+      }
+    }
+    return config
   },
 }
 
