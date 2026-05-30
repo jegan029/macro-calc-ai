@@ -56,21 +56,23 @@ export const metadata: Metadata = {
   },
 }
 
+const hasClerk = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <ClerkProvider>
-      <html
-        lang="en"
-        className={`${geistSans.variable} ${geistMono.variable} h-full`}
-        suppressHydrationWarning
-      >
-        <body className="min-h-full flex flex-col bg-background text-foreground antialiased">
-          <PostHogProvider>
-            {children}
-            <Toaster theme="light" position="bottom-right" richColors />
-          </PostHogProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+  const content = (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-full flex flex-col bg-background text-foreground antialiased">
+        <PostHogProvider>
+          {children}
+          <Toaster theme="light" position="bottom-right" richColors />
+        </PostHogProvider>
+      </body>
+    </html>
   )
+
+  return hasClerk ? <ClerkProvider>{content}</ClerkProvider> : content
 }
