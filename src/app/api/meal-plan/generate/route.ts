@@ -4,7 +4,6 @@ import { z } from 'zod'
 import { openai, buildMealPlanPrompt, buildGroceryPrompt } from '@/lib/openai'
 import { prisma } from '@/lib/prisma'
 import { checkRateLimit, mealPlanRateLimit } from '@/lib/ratelimit'
-import { isPremium } from '@/lib/clerk'
 
 const schema = z.object({
   macros: z.object({
@@ -30,7 +29,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Rate limit exceeded. Try again later.' }, { status: 429 })
   }
 
-  const premium = userId ? await isPremium() : false
   const body = await req.json()
   const parsed = schema.safeParse(body)
   if (!parsed.success) {
@@ -43,7 +41,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: premium ? 'gpt-4o' : 'gpt-4o-mini',
+      model: 'gpt-4o',
       messages: [
         {
           role: 'system',
@@ -85,7 +83,7 @@ export async function POST(req: NextRequest) {
             type: 'meal_plan',
             promptTokens: completion.usage?.prompt_tokens ?? 0,
             completionTokens: completion.usage?.completion_tokens ?? 0,
-            model: premium ? 'gpt-4o' : 'gpt-4o-mini',
+            model: 'gpt-4o',
           },
         }).catch(() => {})
       }

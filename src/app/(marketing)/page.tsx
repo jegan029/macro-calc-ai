@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { HeroSection } from '@/components/landing/HeroSection'
 import { FeatureGrid } from '@/components/landing/FeatureGrid'
+import { MealGallery } from '@/components/landing/MealGallery'
 import { FaqAccordion } from '@/components/landing/FaqAccordion'
 import { NeonButton } from '@/components/shared/NeonButton'
 import { StructuredData } from '@/components/seo/StructuredData'
@@ -61,6 +62,7 @@ export default function LandingPage() {
       <StructuredData data={[webAppSchema, faqSchema]} />
       <HeroSection />
       <FeatureGrid />
+      <MealGallery />
 
       {/* CTA section */}
       <section className="py-24 px-4">

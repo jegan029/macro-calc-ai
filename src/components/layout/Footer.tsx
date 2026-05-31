@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-muted/40">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-10">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-3">
@@ -26,7 +26,6 @@ export function Footer() {
               {[
                 { href: '/calculator',   label: 'Calculator' },
                 { href: '/meal-planner', label: 'Meal Planner' },
-                { href: '/pricing',      label: 'Pricing' },
                 { href: '/referral',     label: 'Refer & Earn' },
               ].map((l) => (
                 <li key={l.href}>
@@ -47,23 +46,6 @@ export function Footer() {
                 { href: '/blog/macro-calculator-women',        label: 'Macros for Women' },
                 { href: '/blog/macro-calculator-fat-loss',     label: 'Fat Loss Guide' },
                 { href: '/blog/high-protein-meal-plans',       label: 'Meal Plans' },
-              ].map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h4 className="font-semibold text-sm mb-3 text-foreground">Legal</h4>
-            <ul className="space-y-2">
-              {[
-                { href: '/privacy', label: 'Privacy Policy' },
-                { href: '/terms',   label: 'Terms of Service' },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">

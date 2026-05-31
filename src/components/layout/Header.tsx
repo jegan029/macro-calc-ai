@@ -11,7 +11,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_LINKS = [
   { href: '/calculator', label: 'Calculator' },
-  { href: '/pricing', label: 'Pricing' },
   { href: '/blog', label: 'Blog' },
 ]
 
