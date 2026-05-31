@@ -1,29 +1,18 @@
-'use client'
+import { StaticMealPlan } from '@/components/meal-planner/StaticMealPlan'
+import type { Metadata } from 'next'
 
-import { MealPlannerForm } from '@/components/meal-planner/MealPlannerForm'
-import { MealPlanDisplay } from '@/components/meal-planner/MealPlanDisplay'
-import { GroceryList } from '@/components/meal-planner/GroceryList'
-import { RecipeShowcase } from '@/components/meal-planner/RecipeShowcase'
-import { useMealPlanStore } from '@/store/useMealPlanStore'
+export const metadata: Metadata = { title: 'Meal Plans — MacroCalc AI' }
 
 export default function MealPlannerPage() {
-  const { plan, grocery } = useMealPlanStore()
-
   return (
-    <div className="max-w-4xl mx-auto space-y-10">
+    <div className="max-w-5xl mx-auto space-y-6">
       <div>
-        <h1 className="text-3xl font-bold mb-1">AI Meal Planner</h1>
+        <h1 className="text-3xl font-bold mb-1">Meal Plans</h1>
         <p className="text-muted-foreground">
-          Generate a personalized 7-day meal plan powered by GPT-4 — completely free.
+          Expert-curated 7-day meal plans for weight loss, maintenance, and muscle gain — completely free.
         </p>
       </div>
-
-      <MealPlannerForm />
-
-      {plan && <MealPlanDisplay plan={plan} />}
-      {grocery && <GroceryList grocery={grocery} />}
-
-      <RecipeShowcase />
+      <StaticMealPlan />
     </div>
   )
 }

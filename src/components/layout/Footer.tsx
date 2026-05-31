@@ -26,7 +26,6 @@ export function Footer() {
               {[
                 { href: '/calculator',   label: 'Calculator' },
                 { href: '/meal-planner', label: 'Meal Planner' },
-                { href: '/referral',     label: 'Refer & Earn' },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">

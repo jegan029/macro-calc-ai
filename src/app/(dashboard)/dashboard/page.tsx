@@ -5,7 +5,6 @@ import { prisma } from '@/lib/prisma'
 import { WeightTrendChart } from '@/components/dashboard/WeightTrendChart'
 import { StreakCard } from '@/components/dashboard/StreakCard'
 import { AchievementBadge } from '@/components/dashboard/AchievementBadge'
-import { ReferralWidget } from '@/components/dashboard/ReferralWidget'
 import { GlassCard } from '@/components/shared/GlassCard'
 import { NeonButton } from '@/components/shared/NeonButton'
 import Link from 'next/link'
@@ -23,7 +22,6 @@ export default async function DashboardPage() {
       progressLogs: { orderBy: { loggedAt: 'asc' }, take: 90 },
       achievements: { include: { achievement: true } },
       macroProfiles: { orderBy: { createdAt: 'desc' }, take: 3 },
-      _count: { select: { referrals: true } },
     },
   })
 
@@ -52,7 +50,7 @@ export default async function DashboardPage() {
         <NeonButton asChild size="md" variant="outline" className="h-16 text-sm">
           <Link href="/meal-planner">
             <ChefHat className="size-4" />
-            AI Meal Planner
+            Meal Planner
           </Link>
         </NeonButton>
       </div>
@@ -105,12 +103,6 @@ export default async function DashboardPage() {
           </div>
         </div>
       )}
-
-      {/* Referral */}
-      <ReferralWidget
-        referralCode={user.referralCode}
-        referralCount={user._count.referrals}
-      />
     </div>
   )
 }

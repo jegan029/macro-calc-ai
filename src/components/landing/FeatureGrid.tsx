@@ -13,8 +13,8 @@ const FEATURES = [
   {
     icon: <Brain className="size-6 text-blue-500" />,
     iconBg: 'bg-blue-50',
-    title: 'AI Meal Planner',
-    description: 'Generate a personalized 7-day meal plan with grocery lists powered by GPT-4. Mediterranean, Indian, Keto, and more.',
+    title: 'Meal Planner',
+    description: 'Get curated 7-day meal plans for weight loss, maintenance, or muscle gain. Mediterranean, Indian, Keto, and more.',
   },
   {
     icon: <TrendingUp className="size-6 text-purple-500" />,

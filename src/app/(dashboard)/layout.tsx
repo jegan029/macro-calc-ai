@@ -4,14 +4,13 @@ import { auth } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { UserButton } from '@clerk/nextjs'
-import { Zap, LayoutDashboard, ChefHat, TrendingUp, Settings, Gift } from 'lucide-react'
+import { Zap, LayoutDashboard, ChefHat, TrendingUp, Settings } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const NAV_ITEMS = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/meal-planner', label: 'Meal Planner', icon: ChefHat },
   { href: '/calculator', label: 'Calculator', icon: TrendingUp },
-  { href: '/referral', label: 'Refer & Earn', icon: Gift },
   { href: '/settings', label: 'Settings', icon: Settings },
 ]
 

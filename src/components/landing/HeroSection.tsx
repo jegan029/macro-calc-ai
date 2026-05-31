@@ -46,8 +46,8 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg text-muted-foreground max-w-lg mb-10 leading-relaxed"
             >
-              Get calories, protein, carbs, fats, and a custom AI meal plan instantly.
-              The #1 macro calculator used by 100,000+ fitness enthusiasts.
+              Get calories, protein, carbs, and fats instantly — plus curated meal plans
+              for weight loss, maintenance, or muscle gain. Completely free.
             </motion.p>
 
             {/* CTAs */}

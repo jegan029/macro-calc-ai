@@ -11,7 +11,7 @@ import { Zap } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'MacroCalc AI — Calculate Your Perfect Macros in 10 Seconds',
   description:
-    'Get calories, protein, carbs, fats, and a custom AI meal plan instantly. Free macro calculator used by 100,000+ fitness enthusiasts. No signup required.',
+    'Get calories, protein, carbs, and fats instantly. Free macro calculator with curated meal plans for weight loss, maintenance, and muscle gain. No signup required.',
 }
 
 const webAppSchema = {
