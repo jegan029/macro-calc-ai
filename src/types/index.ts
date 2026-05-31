@@ -1,5 +1,4 @@
 export * from './calculator'
-export * from './meal-plan'
 
 export type SubscriptionStatus = 'FREE' | 'ACTIVE' | 'PAST_DUE' | 'CANCELED' | 'TRIALING'
 export type UserRole = 'USER' | 'PREMIUM' | 'ADMIN'
