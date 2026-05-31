@@ -141,7 +141,7 @@ export function MacroBreakdown({ result, goal, firstName }: MacroBreakdownProps)
         <NeonButton asChild size="lg" className="w-full gap-2">
           <Link href="/meal-planner">
             <ChefHat className="size-4" />
-            Generate AI Meal Plan
+            View Meal Plans
           </Link>
         </NeonButton>
       </div>

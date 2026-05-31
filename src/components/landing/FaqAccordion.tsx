@@ -12,19 +12,19 @@ const FAQS = [
   },
   {
     q: 'Do I need to create an account?',
-    a: 'No! You can calculate your macros instantly without an account. Creating a free account lets you save your calculations, track progress, and access the AI meal planner.',
+    a: 'No! You can calculate your macros instantly without an account. Creating a free account lets you save your calculations, track progress, and access curated meal plans.',
   },
   {
-    q: "What's included in the free plan?",
-    a: 'The free plan includes unlimited macro calculations, a basic meal plan template, PDF download, and shareable results card. Premium adds AI-powered meal plans, grocery optimization, progress tracking, and weekly coaching insights.',
+    q: "Is everything really free?",
+    a: 'Yes — 100% free, forever. Unlimited macro calculations, 7-day curated meal plans for every goal, PDF download, shareable results card, and progress tracking. No credit card, no premium tier.',
   },
   {
-    q: 'How does the AI meal planner work?',
-    a: 'Our AI uses GPT-4 to generate a personalized 7-day meal plan tailored to your exact macro targets, cuisine preference (Mediterranean, Indian, Asian, Mexican, etc.), and dietary restrictions. It also creates a complete grocery list.',
+    q: 'How do the meal plans work?',
+    a: 'We offer expert-curated 7-day meal plans for three goals: Weight Loss (1,600 cal), Maintenance (2,000 cal), and Weight Gain (2,600 cal). Each plan includes breakfast, lunch, dinner, and a snack for every day of the week.',
   },
   {
     q: "Can I use this if I'm vegetarian or vegan?",
-    a: 'Absolutely! Select vegetarian or vegan in the AI meal planner, and all generated meals, recipes, and grocery lists will be 100% plant-based while still hitting your protein targets.',
+    a: 'The meal plans are designed with a variety of whole foods. While they are not exclusively plant-based, most meals can be adapted by swapping animal protein for tofu, legumes, or tempeh without significantly changing the macro totals.',
   },
   {
     q: 'How often should I recalculate my macros?',

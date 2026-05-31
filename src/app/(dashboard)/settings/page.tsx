@@ -16,7 +16,7 @@ export default async function SettingsPage() {
         </div>
         <div className="flex-1 min-w-0">
           <p className="font-semibold text-neon">All Features Free</p>
-          <p className="text-sm text-muted-foreground">Unlimited AI meal plans, progress tracking, and more — completely free.</p>
+          <p className="text-sm text-muted-foreground">Unlimited macro calculations, curated meal plans, progress tracking, and more — completely free.</p>
         </div>
       </GlassCard>
 

@@ -19,7 +19,7 @@ const webAppSchema = {
   '@type': 'WebApplication',
   name: 'MacroCalc AI',
   applicationCategory: 'HealthApplication',
-  description: 'Calculate your perfect macros in 10 seconds. Free macro calculator with AI meal planning.',
+  description: 'Calculate your perfect macros in 10 seconds. Free macro calculator with curated meal planning.',
   offers: {
     '@type': 'Offer',
     price: '0',

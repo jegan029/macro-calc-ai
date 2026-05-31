@@ -49,7 +49,7 @@ export function MealGallery() {
             <span className="gradient-text">Feel Amazing</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Our AI generates personalized meal plans from hundreds of healthy recipes tailored to your macros.
+            Expert-curated meal plans for every goal — weight loss, maintenance, or muscle gain. Free, no signup needed.
           </p>
         </div>
 

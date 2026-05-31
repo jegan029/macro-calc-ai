@@ -53,7 +53,7 @@ export function FeatureGrid() {
             <span className="gradient-text">Transform Your Body</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            From calculation to AI meal planning — MacroCalc AI is the last fitness tool you'll ever need.
+            From instant macro calculation to curated meal plans — MacroCalc AI is the last fitness tool you'll ever need.
           </p>
         </div>
 
